@@ -1,0 +1,52 @@
+﻿<h3>Todos</h3>
+@inject HttpClient Http
+@page "/todos"
+
+@if (TodoItems == null)
+{
+    <p>Loading...</p>
+}
+else
+{
+    <table class="table">
+        <thead>
+        <tr>
+            <th>UserId</th>
+            <th>Id</th>
+            <th>Title</th>
+            <th>Completed</th>
+        </tr>
+        </thead>
+        <tbody>
+        @foreach (var item in TodoItems)
+        {
+            <tr>
+                <td>@item.UserId</td>
+                <td>@item.Id</td>
+                <td>@item.Title</td>
+                <td>@item.Completed</td>
+            </tr>
+        }
+        </tbody>
+    </table>
+}
+
+@code {
+    private TodoItem[] TodoItems;
+    protected override async Task OnInitializedAsync()
+    {
+        TodoItems = await Http.GetFromJsonAsync<TodoItem[]>("https://jsonplaceholder.typicode.com/todos");
+    }
+
+    public class TodoItem
+    {
+        public int UserId { get; set; }
+
+        public int Id { get; set; }
+
+        public string Title { get; set; }
+
+        public bool Completed { get; set; }
+    }
+
+}

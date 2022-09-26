@@ -1,0 +1,27 @@
+﻿<h1>Books</h1>
+@page "/books"
+
+<p>@Book</p>
+
+@*2 component arasi data dasima*@
+<BookDetail BookName="1984" Count=100 click="Save"></BookDetail>
+
+<button @onclick="Save" class="btn-info">Save</button>
+<p style="color:red">@Message</p>
+
+@code {
+    public string Book;
+
+    public string Message;
+
+    protected override async Task OnInitializedAsync()
+    {
+        Book = "1984,To Live";
+    }
+
+    private void Save(MouseEventArgs e)
+    {
+        Message = "Completed";
+    }
+
+}

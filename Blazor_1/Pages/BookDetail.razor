@@ -1,0 +1,15 @@
+﻿<h3>BookDetail</h3>
+<p>Book Name:@BookName</p>
+<p>Count:@Count</p>
+
+<button @onclick="click" class="btn btn-primary">Save</button>
+
+@code {
+    [Parameter]
+    public string BookName { get; set; }
+    [Parameter]
+    public int Count { get; set; }
+
+    [Parameter]
+    public EventCallback<MouseEventArgs> click { get; set; }
+}
